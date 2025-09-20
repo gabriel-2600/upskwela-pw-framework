@@ -5,10 +5,19 @@ test.beforeEach(async ({ page, loginPage }) => {
   await loginPage.successfulLogin();
 });
 
-test.describe("Home Page Scenario", () => {
-  test("Search Bar", async ({ homePage }) => {
+test.describe("My Communities Scenario", () => {
+  test.beforeEach(async ({ homePage }) => {});
+
+  test("Search an existing community in Owned", async ({ homePage }) => {
     await homePage.useSearchCommunity("test community");
 
-    await homePage.testCommunity.click();
+    await expect(homePage.testCommunity).toHaveText(/test community/);
+  });
+
+  test("Search a non existing community in Owned", async ({ homePage }) => {
+    await homePage.useSearchCommunity("n/a");
+
+    await homePage.noActiveMemberships.waitFor({ state: "attached" });
+    await expect(homePage.noActiveMemberships).toBeVisible();
   });
 });
