@@ -1,4 +1,6 @@
 import { Page, Locator } from "@playwright/test";
+import loginData from "../test-data/login-data";
+loginData;
 
 class LoginPage {
   readonly page: Page;
@@ -24,6 +26,11 @@ class LoginPage {
 
   async clickLoginButton() {
     await this.loginButton.click();
+  }
+
+  async successfulLogin() {
+    await this.fillCredentials(loginData.email, loginData.password);
+    await this.clickLoginButton();
   }
 }
 
