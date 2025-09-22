@@ -6,27 +6,13 @@ test.beforeEach(async ({ page, loginPage }) => {
 });
 
 test.describe("My Communities Scenario", () => {
-  test("Search an existing community in Owned", async ({
-    page,
-    homePage,
-    loginPage,
-  }) => {
-    // await page.goto("https://app.upskwela.com/login");
-    // await loginPage.successfulLogin();
-
+  test("Search an existing community", async ({ homePage }) => {
     await homePage.useSearchCommunity("test community");
 
     await expect(homePage.testCommunity).toHaveText(/test community/);
   });
 
-  test("Search a non existing community in Owned", async ({
-    page,
-    homePage,
-    loginPage,
-  }) => {
-    // await page.goto("https://app.upskwela.com/login");
-    // await loginPage.successfulLogin();
-
+  test("Search a non existing community", async ({ homePage }) => {
     await homePage.useSearchCommunity("n/a");
 
     await homePage.noCommunitiesFound.waitFor({ state: "attached" });

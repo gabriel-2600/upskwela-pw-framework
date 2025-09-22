@@ -1,7 +1,7 @@
 import { test as base } from "@playwright/test";
 import LoginPage from "./login-page";
 import HomePage from "./home-page";
-import TestCommunity from "./test-community-pages";
+import TestCommunity from "./test-community-page";
 
 type MyFixtures = {
   loginPage: LoginPage;
