@@ -5,21 +5,18 @@ class HomePage {
   readonly onwedButton: Locator;
   readonly testCommunity: Locator;
   readonly searchCommunity: Locator;
-  readonly noActiveMemberships: Locator;
+  readonly noCommunitiesFound: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.onwedButton = this.page.getByRole("tab", { name: "Owned" });
-    this.searchCommunity = this.page.getByRole("textbox", {
-      name: "Search communities...",
-    });
-
+    this.searchCommunity = this.page.getByPlaceholder("Search communities...");
     this.testCommunity = this.page.getByRole("link", {
       name: "test community Free GM test",
     });
-    this.noActiveMemberships = this.page.getByText(
-      "No active membershipsYou don'"
-    );
+    this.noCommunitiesFound = this.page.getByRole("heading", {
+      name: "No communities found",
+    });
   }
 
   async useSearchCommunity(community: string) {

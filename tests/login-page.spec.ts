@@ -12,9 +12,7 @@ test.describe("Login Scenarios", () => {
     await expect(homePage.page).toHaveURL(
       "https://app.upskwela.com/communities"
     );
-    await expect(homePage.page).not.toHaveURL(
-      "https://www.upskwela.com/communities"
-    );
+    await expect(homePage.page).not.toHaveURL("https://www.upskwela.com/login");
   });
 
   test("Incorrect Password", async ({ loginPage }) => {
