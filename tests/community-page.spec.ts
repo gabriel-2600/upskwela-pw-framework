@@ -7,7 +7,7 @@ test.beforeEach(async ({ page, loginPage, communityPage }) => {
   await communityPage.goToCommunities();
 });
 
-test.describe("Communities Scenario", () => {
+test.describe("Search Community Scenario", () => {
   test("Search an existing community", async ({ communityPage }) => {
     await communityPage.useSearchCommunity("upskwela community");
 
@@ -25,7 +25,7 @@ test.describe("Communities Scenario", () => {
 });
 
 test.describe("Create Community Scenario", () => {
-  test.only("Create community succesfully", async ({ communityPage }) => {
+  test("Create a community succesfully", async ({ communityPage }) => {
     await communityPage.clickCreateCommunityBtn();
 
     await communityPage.fillInputFields(
@@ -36,5 +36,16 @@ test.describe("Create Community Scenario", () => {
     await communityPage.uploadImage(createCommunityData.coverImage);
     await communityPage.checkGuidelinesAndNDA();
     await communityPage.submitCommunity();
+  });
+
+  test("Create a community with empty input fields", async ({
+    communityPage,
+  }) => {
+    await communityPage.clickCreateCommunityBtn();
+    await communityPage.submitCommunity();
+
+    await expect(communityPage.formVid).toHaveText(
+      /Community name is required/
+    );
   });
 });

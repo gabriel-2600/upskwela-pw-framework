@@ -10,6 +10,7 @@ class CommunitiesPage {
   readonly noCommunitiesFound: Locator;
 
   // Create Community Page
+  readonly formVid: Locator;
   readonly communityNameInput: Locator;
   readonly communitySlugInput: Locator;
   readonly descriptionInput: Locator;
@@ -38,6 +39,9 @@ class CommunitiesPage {
     });
 
     // Create Community Page
+    this.formVid = this.page.locator("form.space-y-6", {
+      hasText: "Basic Details",
+    });
     this.communityNameInput = this.page.getByRole("textbox", {
       name: "Community Name",
     });
