@@ -1,16 +1,16 @@
-import { Page, Locator } from "@playwright/test";
+import { Page, Locator, expect } from "@playwright/test";
 
 class CommunitiesPage {
   // Community Page
   readonly page: Page;
-  readonly communityNavBtn: Locator;
+  readonly communityNavLink: Locator;
   readonly createCommunityBtn: Locator;
   readonly upskwelaCommunity: Locator;
   readonly searchCommunity: Locator;
   readonly noCommunitiesFound: Locator;
 
-  // Create Community Page
-  readonly formVid: Locator;
+  // Create Community Form
+  readonly formDiv: Locator;
   readonly communityNameInput: Locator;
   readonly communitySlugInput: Locator;
   readonly descriptionInput: Locator;
@@ -23,7 +23,7 @@ class CommunitiesPage {
   constructor(page: Page) {
     // Community Page
     this.page = page;
-    this.communityNavBtn = this.page.getByRole("link", {
+    this.communityNavLink = this.page.getByRole("link", {
       name: "Communities",
       exact: true,
     });
@@ -38,8 +38,8 @@ class CommunitiesPage {
       name: "No communities found",
     });
 
-    // Create Community Page
-    this.formVid = this.page.locator("form.space-y-6", {
+    // Create Community Form
+    this.formDiv = this.page.locator("form.space-y-6", {
       hasText: "Basic Details",
     });
     this.communityNameInput = this.page.getByRole("textbox", {
@@ -68,7 +68,7 @@ class CommunitiesPage {
   }
 
   async goToCommunities() {
-    await this.communityNavBtn.click();
+    await this.communityNavLink.click();
   }
 
   async useSearchCommunity(community: string) {
@@ -76,7 +76,12 @@ class CommunitiesPage {
   }
 
   async clickCreateCommunityBtn() {
-    await this.createCommunityBtn.click();
+    await Promise.all([
+      this.page.waitForURL("**/communities/create"),
+      this.page.getByRole("button", { name: "Create Community" }).click(),
+    ]);
+
+    await expect(this.formDiv).toBeVisible({ timeout: 5000 });
   }
 
   // Create Community

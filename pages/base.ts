@@ -1,18 +1,23 @@
 import { test as base } from "@playwright/test";
 import LoginPage from "./login-page";
 import CommunitiesPage from "./communities-page";
+import MyCommunitiesPage from "./my-communities-page";
 
 type MyFixtures = {
   loginPage: LoginPage;
-  communityPage: CommunitiesPage;
+  communitiesPage: CommunitiesPage;
+  myCommuntiesPage: MyCommunitiesPage;
 };
 
 export const test = base.extend<MyFixtures>({
   loginPage: async ({ page }, use) => {
     await use(new LoginPage(page));
   },
-  communityPage: async ({ page }, use) => {
+  communitiesPage: async ({ page }, use) => {
     await use(new CommunitiesPage(page));
+  },
+  myCommuntiesPage: async ({ page }, use) => {
+    await use(new MyCommunitiesPage(page));
   },
 });
 

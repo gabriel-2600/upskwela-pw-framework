@@ -1,50 +1,50 @@
 import { test, expect } from "../pages/base.ts";
 import createCommunityData from "../test-data/create-community-data.js";
 
-test.beforeEach(async ({ page, loginPage, communityPage }) => {
+test.beforeEach(async ({ page, loginPage, communitiesPage }) => {
   await page.goto("https://app.upskwela.com/login");
   await loginPage.successfulLogin();
-  await communityPage.goToCommunities();
+  // await communityPage.goToCommunities();
 });
 
 test.describe("Search Community Scenario", () => {
-  test("Search an existing community", async ({ communityPage }) => {
-    await communityPage.useSearchCommunity("upskwela community");
+  test("Search an existing community", async ({ communitiesPage }) => {
+    await communitiesPage.useSearchCommunity("upskwela community");
 
-    await expect(communityPage.upskwelaCommunity).toHaveText(
+    await expect(communitiesPage.upskwelaCommunity).toHaveText(
       /Upskwela Community/
     );
   });
 
-  test("Search a non existing community", async ({ communityPage }) => {
-    await communityPage.useSearchCommunity("n/a");
+  test("Search a non existing community", async ({ communitiesPage }) => {
+    await communitiesPage.useSearchCommunity("n/a");
 
-    await communityPage.noCommunitiesFound.waitFor({ state: "attached" });
-    await expect(communityPage.noCommunitiesFound).toBeVisible();
+    await communitiesPage.noCommunitiesFound.waitFor({ state: "attached" });
+    await expect(communitiesPage.noCommunitiesFound).toBeVisible();
   });
 });
 
 test.describe("Create Community Scenario", () => {
-  test("Create a community succesfully", async ({ communityPage }) => {
-    await communityPage.clickCreateCommunityBtn();
+  test("Create a community succesfully", async ({ communitiesPage }) => {
+    await communitiesPage.clickCreateCommunityBtn();
 
-    await communityPage.fillInputFields(
+    await communitiesPage.fillInputFields(
       // createCommunityData.communityName,
       createCommunityData.communitySlug,
       createCommunityData.description
     );
-    await communityPage.uploadImage(createCommunityData.coverImage);
-    await communityPage.checkGuidelinesAndNDA();
-    await communityPage.submitCommunity();
+    await communitiesPage.uploadImage(createCommunityData.coverImage);
+    await communitiesPage.checkGuidelinesAndNDA();
+    await communitiesPage.submitCommunity();
   });
 
   test("Create a community with empty input fields", async ({
-    communityPage,
+    communitiesPage,
   }) => {
-    await communityPage.clickCreateCommunityBtn();
-    await communityPage.submitCommunity();
+    await communitiesPage.clickCreateCommunityBtn();
+    await communitiesPage.submitCommunity();
 
-    await expect(communityPage.formVid).toHaveText(
+    await expect(communitiesPage.formDiv).toHaveText(
       /Community name is required/
     );
   });
