@@ -1,4 +1,4 @@
-import { test, expect } from "../pages/base.ts";
+import { test } from "../pages/base.ts";
 
 test.beforeEach(async ({ page, loginPage, myCommuntiesPage }) => {
   await page.goto("https://app.upskwela.com/login");
@@ -8,7 +8,9 @@ test.beforeEach(async ({ page, loginPage, myCommuntiesPage }) => {
 });
 
 test.describe("", () => {
-  test("", async ({ myCommuntiesPage }) => {
+  test("Click a community in Active Membership Section", async ({
+    myCommuntiesPage,
+  }) => {
     await myCommuntiesPage.clickActiveTab();
     await myCommuntiesPage.goToCommunity();
   });
