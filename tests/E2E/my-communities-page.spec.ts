@@ -1,4 +1,4 @@
-import { test } from "../pages/base.ts";
+import { test } from "../../pages/base.ts";
 
 test.beforeEach(async ({ page, loginPage, myCommuntiesPage }) => {
   await page.goto("https://app.upskwela.com/login");

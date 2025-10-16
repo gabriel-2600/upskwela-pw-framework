@@ -1,5 +1,5 @@
-import { test, expect } from "../pages/base.ts";
-import createCommunityData from "../test-data/create-community-data.js";
+import { test, expect } from "../../pages/base.ts";
+import createCommunityData from "../../test-data/create-community-data.js";
 
 test.beforeEach(async ({ page, loginPage, communitiesPage }) => {
   await page.goto("https://app.upskwela.com/login");

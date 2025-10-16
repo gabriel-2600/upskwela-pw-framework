@@ -1,5 +1,5 @@
-import { test, expect } from "../pages/base.ts";
-import loginData from "../test-data/login-data.js";
+import { test, expect } from "../../pages/base.ts";
+import loginData from "../../test-data/login-data.js";
 
 test.beforeEach(async ({ page }) => {
   await page.goto("https://app.upskwela.com/login");
@@ -18,7 +18,7 @@ test.describe("Login Scenarios", () => {
     await loginPage.clickLoginButton();
 
     await expect(loginPage.informationField).toContainText(
-      "Please check your email/username and password and try again.",
+      "Please check your email/username and password and try again."
     );
   });
 
@@ -27,7 +27,7 @@ test.describe("Login Scenarios", () => {
     await loginPage.clickLoginButton();
 
     await expect(loginPage.informationField).toContainText(
-      "Please check your email/username and password and try again.",
+      "Please check your email/username and password and try again."
     );
   });
 
@@ -36,7 +36,7 @@ test.describe("Login Scenarios", () => {
     await loginPage.clickLoginButton();
 
     await expect(loginPage.informationField).toContainText(
-      "Please enter your password",
+      "Please enter your password"
     );
   });
 
@@ -45,7 +45,7 @@ test.describe("Login Scenarios", () => {
     await loginPage.clickLoginButton();
 
     await expect(loginPage.informationField).toContainText(
-      "Please enter your email or username",
+      "Please enter your email or username"
     );
   });
 });

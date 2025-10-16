@@ -1,4 +1,4 @@
-import { test, expect } from "../../pages/base.ts";
+import { test, expect } from "../../../pages/base.ts";
 
 test.beforeEach(
   async ({ page, loginPage, myCommuntiesPage, communityPage }) => {
