@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-const { EMAIL, PASSWORD, LOGINAPI } = process.env;
+const { EMAIL, PASSWORD } = process.env;
 if (!EMAIL || !PASSWORD) {
   throw new Error("Missing EMAIL or PASSWORD in environment variables");
 }
