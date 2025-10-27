@@ -1,22 +1,22 @@
 import { test, expect } from "../../pages/base.ts";
 import loginData from "../../test-data/login-data.js";
 import apiData from "../../test-data/api-data.js";
-import { group } from "console";
 
 test.describe("Log in API Scenario", () => {
   test("Succesful Log in", async ({ request }) => {
-    const response = await request.post(apiData.loginAPI, {
+    const loginResponse = await request.post(apiData.loginAPI, {
       data: {
         email: loginData.email,
         password: loginData.password,
       },
     });
 
-    expect(response.status()).toBe(200);
+    expect(loginResponse.status()).toBe(200);
   });
 });
 
 test.describe("Community create and delete post scenario", () => {
+  let cookies: { name: string; value: string }[];
   let postResponseObject: {
     id: string;
     content_md: string;
@@ -24,16 +24,9 @@ test.describe("Community create and delete post scenario", () => {
     title: string;
     updated_at: string;
   };
-  let cookies: {
-    name: string;
-    value: string;
-  }[];
 
-  test.beforeAll("Retrieve cookies", async ({ page, loginPage }) => {
-    await page.goto("https://app.upskwela.com/login");
-    await loginPage.successfulLogin();
-    await page.waitForURL("**/communities");
-    cookies = await page.context().cookies();
+  test.beforeAll(async ({ loginPage }) => {
+    cookies = await loginPage.getCookie();
   });
 
   test("Create a Post", async ({ request }) => {
@@ -72,5 +65,19 @@ test.describe("Community create and delete post scenario", () => {
     });
 
     expect(deleteResponse.status()).toBe(200);
+  });
+});
+
+test.describe("Log out API Sceenario", async () => {
+  test("Log out user", async ({ loginPage, request }) => {
+    const cookies = await loginPage.getCookie();
+
+    const logoutReponse = await request.delete(apiData.logoutAPI, {
+      headers: {
+        Cookie: `${cookies[0].name}=${cookies[0].value}; ${cookies[1].name}=${cookies[1].value}`,
+      },
+    });
+
+    expect(logoutReponse.status()).toBe(200);
   });
 });

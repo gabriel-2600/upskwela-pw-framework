@@ -32,6 +32,15 @@ class LoginPage {
     await this.fillCredentials(loginData.email, loginData.password);
     await this.clickLoginButton();
   }
+
+  async getCookie() {
+    await this.page.goto("https://app.upskwela.com/login");
+    await this.successfulLogin();
+    await this.page.waitForURL("**/communities");
+    const cookies = await this.page.context().cookies();
+
+    return cookies;
+  }
 }
 
 export default LoginPage;
