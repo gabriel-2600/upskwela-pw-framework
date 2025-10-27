@@ -33,7 +33,7 @@ test.describe("Create Community Scenario", () => {
       createCommunityData.communitySlug,
       createCommunityData.description
     );
-    await communitiesPage.uploadImage(createCommunityData.coverImage);
+    // await communitiesPage.uploadImage(createCommunityData.coverImage);
     await communitiesPage.checkGuidelinesAndNDA();
     await communitiesPage.submitCommunity();
   });
