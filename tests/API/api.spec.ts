@@ -78,6 +78,9 @@ test.describe("Log out API Sceenario", async () => {
       },
     });
 
+    const logoutReponseObject = await logoutReponse.json();
+
     expect(logoutReponse.status()).toBe(200);
+    expect(logoutReponseObject).toBe("Logged out successfully");
   });
 });
