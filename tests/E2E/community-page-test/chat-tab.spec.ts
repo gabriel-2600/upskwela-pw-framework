@@ -1,16 +1,13 @@
 import { test, expect } from "../../../pages/base.ts";
 
-test.beforeEach(
-  async ({ page, loginPage, myCommuntiesPage, communityPage }) => {
-    await page.goto("https://app.upskwela.com/login");
-    await loginPage.successfulLogin();
-    await myCommuntiesPage.goToMyCommunitiesPage();
-    await myCommuntiesPage.clickOwnedTab();
-    await myCommuntiesPage.clickActiveTab();
-    await myCommuntiesPage.goToCommunity();
-    await communityPage.goToChatTab();
-  }
-);
+test.beforeEach(async ({ page, myCommunitiesPage, communityPage }) => {
+  await page.goto("https://app.upskwela.com/");
+  await myCommunitiesPage.goToMyCommunitiesPage();
+  await myCommunitiesPage.clickOwnedTab();
+  await myCommunitiesPage.clickActiveTab();
+  await myCommunitiesPage.goToCommunity();
+  await communityPage.goToChatTab();
+});
 
 test.describe("Chat Tab Scenario", () => {
   test("Edit a chat, then delete", async ({ chatTab }) => {

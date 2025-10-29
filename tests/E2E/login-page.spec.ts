@@ -1,6 +1,10 @@
 import { test, expect } from "../../pages/base.ts";
 import loginData from "../../test-data/login-data.js";
 
+test.use({
+  storageState: { cookies: [], origins: [] },
+});
+
 test.beforeEach(async ({ page }) => {
   await page.goto("https://app.upskwela.com/login");
 });

@@ -30,7 +30,9 @@ class CommunitiesPage {
     this.createCommunityBtn = this.page.getByRole("button", {
       name: "Create Community",
     });
-    this.searchCommunity = this.page.getByPlaceholder("Search communities...");
+    this.searchCommunity = this.page.getByRole("textbox", {
+      name: " Search communities...",
+    });
     this.upskwelaCommunity = this.page.getByRole("link", {
       name: "Upskwela Community",
     });
@@ -72,6 +74,7 @@ class CommunitiesPage {
   }
 
   async useSearchCommunity(community: string) {
+    await this.page.waitForLoadState("networkidle");
     await this.searchCommunity.fill(community);
   }
 

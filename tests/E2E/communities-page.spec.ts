@@ -1,9 +1,8 @@
 import { test, expect } from "../../pages/base.ts";
 import createCommunityData from "../../test-data/create-community-data.js";
 
-test.beforeEach(async ({ page, loginPage, communitiesPage }) => {
-  await page.goto("https://app.upskwela.com/login");
-  await loginPage.successfulLogin();
+test.beforeEach(async ({ page, communitiesPage }) => {
+  await page.goto("https://app.upskwela.com/");
   await communitiesPage.goToCommunities();
 });
 
@@ -19,7 +18,6 @@ test.describe("Search Community Scenario", () => {
   test("Search a non existing community", async ({ communitiesPage }) => {
     await communitiesPage.useSearchCommunity("n/a");
 
-    await communitiesPage.noCommunitiesFound.waitFor({ state: "attached" });
     await expect(communitiesPage.noCommunitiesFound).toBeVisible();
   });
 });

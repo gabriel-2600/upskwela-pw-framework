@@ -68,7 +68,7 @@ test.describe("Community create and delete post scenario", () => {
   });
 });
 
-test.describe("Log out API Sceenario", async () => {
+test.describe("Log out API Scenario", async () => {
   test("Log out user", async ({ loginPage, request }) => {
     const cookies = await loginPage.getCookie();
 

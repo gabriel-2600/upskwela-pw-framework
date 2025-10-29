@@ -1,17 +1,16 @@
 import { test } from "../../pages/base.ts";
 
-test.beforeEach(async ({ page, loginPage, myCommuntiesPage }) => {
-  await page.goto("https://app.upskwela.com/login");
-  await loginPage.successfulLogin();
-  await myCommuntiesPage.goToMyCommunitiesPage();
-  await myCommuntiesPage.clickOwnedTab();
+test.beforeEach(async ({ page, myCommunitiesPage }) => {
+  await page.goto("https://app.upskwela.com/");
+  await myCommunitiesPage.goToMyCommunitiesPage();
+  await myCommunitiesPage.clickOwnedTab();
 });
 
 test.describe("", () => {
   test("Click a community in Active Membership Section", async ({
-    myCommuntiesPage,
+    myCommunitiesPage,
   }) => {
-    await myCommuntiesPage.clickActiveTab();
-    await myCommuntiesPage.goToCommunity();
+    await myCommunitiesPage.clickActiveTab();
+    await myCommunitiesPage.goToCommunity();
   });
 });

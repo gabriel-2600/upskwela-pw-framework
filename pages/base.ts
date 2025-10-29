@@ -8,7 +8,7 @@ import ChatTab from "./communitiy-page/chat-tab-page";
 type MyFixtures = {
   loginPage: LoginPage;
   communitiesPage: CommunitiesPage;
-  myCommuntiesPage: MyCommunitiesPage;
+  myCommunitiesPage: MyCommunitiesPage;
   communityPage: CommunityPage;
   chatTab: ChatTab;
 };
@@ -20,7 +20,7 @@ export const test = base.extend<MyFixtures>({
   communitiesPage: async ({ page }, use) => {
     await use(new CommunitiesPage(page));
   },
-  myCommuntiesPage: async ({ page }, use) => {
+  myCommunitiesPage: async ({ page }, use) => {
     await use(new MyCommunitiesPage(page));
   },
   communityPage: async ({ page }, use) => {

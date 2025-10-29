@@ -25,11 +25,14 @@ class ChatTab {
     this.manualTestterChat = this.page.getByRole("link", {
       name: "Manual Tester (Description",
     });
-    this.chatInputField = this.page.getByRole("textbox", { name: "Aa" });
+    this.chatInputField = this.page.getByRole("textbox", {
+      name: "Say something...",
+    });
 
     // Chat Div
-    this.chatDiv = this.page.locator(".rounded-2xl").first();
+    this.chatDiv = this.page.locator(".rounded-2xl.bg-primary").first();
     this.chatDivMenu = this.page
+      .locator(".flex-row-reverse")
       .locator('[aria-haspopup="menu"]')
       .locator(".lucide-ellipsis-vertical")
       .first();
