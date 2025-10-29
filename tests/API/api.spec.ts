@@ -1,8 +1,12 @@
 import { test, expect } from "../../pages/base.ts";
+import fs from "fs";
 import loginData from "../../test-data/login-data.js";
 import apiData from "../../test-data/api-data.js";
 
-test.describe("Log in API Scenario", () => {
+test.describe("Authentication API Scenario", () => {
+  const storageState = JSON.parse(fs.readFileSync(".auth/user.json", "utf-8"));
+  const cookies = storageState.cookies;
+
   test("Succesful Log in", async ({ request }) => {
     const loginResponse = await request.post(apiData.loginAPI, {
       data: {
@@ -13,10 +17,25 @@ test.describe("Log in API Scenario", () => {
 
     expect(loginResponse.status()).toBe(200);
   });
+
+  test("Log out user", async ({ loginPage, request }) => {
+    const logoutReponse = await request.delete(apiData.logoutAPI, {
+      headers: {
+        Cookie: `${cookies[0].name}=${cookies[0].value}; ${cookies[1].name}=${cookies[1].value}`,
+      },
+    });
+
+    const logoutReponseObject = await logoutReponse.json();
+
+    expect(logoutReponse.status()).toBe(200);
+    expect(logoutReponseObject).toBe("Logged out successfully");
+  });
 });
 
 test.describe("Community create and delete post scenario", () => {
-  let cookies: { name: string; value: string }[];
+  const storageState = JSON.parse(fs.readFileSync(".auth/user.json", "utf-8"));
+  const cookies = storageState.cookies;
+
   let postResponseObject: {
     id: string;
     content_md: string;
@@ -24,10 +43,6 @@ test.describe("Community create and delete post scenario", () => {
     title: string;
     updated_at: string;
   };
-
-  test.beforeAll(async ({ loginPage }) => {
-    cookies = await loginPage.getCookie();
-  });
 
   test("Create a Post", async ({ request }) => {
     const createPostAPI = apiData.postAPI;
@@ -65,22 +80,5 @@ test.describe("Community create and delete post scenario", () => {
     });
 
     expect(deleteResponse.status()).toBe(200);
-  });
-});
-
-test.describe("Log out API Scenario", async () => {
-  test("Log out user", async ({ loginPage, request }) => {
-    const cookies = await loginPage.getCookie();
-
-    const logoutReponse = await request.delete(apiData.logoutAPI, {
-      headers: {
-        Cookie: `${cookies[0].name}=${cookies[0].value}; ${cookies[1].name}=${cookies[1].value}`,
-      },
-    });
-
-    const logoutReponseObject = await logoutReponse.json();
-
-    expect(logoutReponse.status()).toBe(200);
-    expect(logoutReponseObject).toBe("Logged out successfully");
   });
 });
