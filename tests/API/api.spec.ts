@@ -1,12 +1,8 @@
-import { test, expect } from "../../pages/base.ts";
-import fs from "fs";
+import { test, expect, request } from "../../pages/base.ts";
 import loginData from "../../test-data/login-data.js";
 import apiData from "../../test-data/api-data.js";
 
 test.describe("Authentication API Scenario", () => {
-  const storageState = JSON.parse(fs.readFileSync(".auth/user.json", "utf-8"));
-  const cookies = storageState.cookies;
-
   test("Succesful Log in", async ({ request }) => {
     const loginResponse = await request.post(apiData.loginAPI, {
       data: {
@@ -18,12 +14,8 @@ test.describe("Authentication API Scenario", () => {
     expect(loginResponse.status()).toBe(200);
   });
 
-  test("Log out user", async ({ loginPage, request }) => {
-    const logoutReponse = await request.delete(apiData.logoutAPI, {
-      headers: {
-        Cookie: `${cookies[0].name}=${cookies[0].value}; ${cookies[1].name}=${cookies[1].value}`,
-      },
-    });
+  test("Log out user", async ({ request }) => {
+    const logoutReponse = await request.delete(apiData.logoutAPI);
 
     const logoutReponseObject = await logoutReponse.json();
 
@@ -33,9 +25,6 @@ test.describe("Authentication API Scenario", () => {
 });
 
 test.describe("Community create and delete post scenario", () => {
-  const storageState = JSON.parse(fs.readFileSync(".auth/user.json", "utf-8"));
-  const cookies = storageState.cookies;
-
   let postResponseObject: {
     id: string;
     content_md: string;
@@ -51,9 +40,6 @@ test.describe("Community create and delete post scenario", () => {
         group_id: apiData.communityID,
         title: "API test title",
         content_md: "API test content",
-      },
-      headers: {
-        Cookie: `${cookies[0].name}=${cookies[0].value}; ${cookies[1].name}=${cookies[1].value}`,
       },
     });
     postResponseObject = await postResponse.json();
@@ -73,9 +59,6 @@ test.describe("Community create and delete post scenario", () => {
         is_announcement: false,
         title: postResponseObject.title,
         updated_at: postResponseObject.updated_at,
-      },
-      headers: {
-        Cookie: `${cookies[0].name}=${cookies[0].value}; ${cookies[1].name}=${cookies[1].value}`,
       },
     });
 

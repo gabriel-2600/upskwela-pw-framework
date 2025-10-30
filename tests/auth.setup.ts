@@ -1,11 +1,23 @@
-import { test as setup } from "../pages/base.ts";
+import { test as setup, request } from "../pages/base.ts";
+import fs from "fs";
+import loginData from "../test-data/login-data.js";
+import apiData from "../test-data/api-data.js";
 
 const authfile = ".auth/user.json";
 
-setup("authentication", async ({ page, loginPage }) => {
-  await page.goto("https://app.upskwela.com/login");
-  await loginPage.successfulLogin();
-  await page.waitForLoadState("networkidle");
+setup("authentication", async ({}) => {
+  const apiContext = await request.newContext();
+  await apiContext.post(apiData.loginAPI, {
+    data: {
+      email: loginData.email,
+      password: loginData.password,
+    },
+  });
 
-  await page.context().storageState({ path: authfile });
+  await apiContext.storageState({ path: authfile });
+
+  const storageState = JSON.parse(fs.readFileSync(".auth/user.json", "utf-8"));
+  const cookies = storageState.cookies;
+  process.env["COOKIES"] =
+    `${cookies[0].name}=${cookies[0].value}; ${cookies[1].name}=${cookies[1].value}`;
 });

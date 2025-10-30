@@ -31,4 +31,4 @@ export const test = base.extend<MyFixtures>({
   },
 });
 
-export { expect } from "@playwright/test";
+export { expect, request } from "@playwright/test";
