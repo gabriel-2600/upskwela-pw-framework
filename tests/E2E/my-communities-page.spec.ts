@@ -10,7 +10,7 @@ test.describe("", () => {
   test("Click a community in Active Membership Section", async ({
     myCommunitiesPage,
   }) => {
-    await myCommunitiesPage.clickActiveTab();
+    await myCommunitiesPage.clickJoinedTab();
     await myCommunitiesPage.goToCommunity();
   });
 });

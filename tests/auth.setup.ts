@@ -15,9 +15,4 @@ setup("authentication", async ({}) => {
   });
 
   await apiContext.storageState({ path: authfile });
-
-  const storageState = JSON.parse(fs.readFileSync(".auth/user.json", "utf-8"));
-  const cookies = storageState.cookies;
-  process.env["COOKIES"] =
-    `${cookies[0].name}=${cookies[0].value}; ${cookies[1].name}=${cookies[1].value}`;
 });

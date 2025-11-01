@@ -1,4 +1,4 @@
-import { test, expect, request } from "../../pages/base.ts";
+import { test, expect } from "../../pages/base.ts";
 import loginData from "../../test-data/login-data.js";
 import apiData from "../../test-data/api-data.js";
 

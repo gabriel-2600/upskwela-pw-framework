@@ -4,7 +4,7 @@ class MyCommunitiesPage {
   readonly page: Page;
   readonly myCommunitiesNavLink: Locator;
   readonly ownedTab: Locator;
-  readonly activeTab: Locator;
+  readonly joinedTab: Locator;
   readonly qaAutomationTesterHeading: Locator;
 
   constructor(page: Page) {
@@ -14,7 +14,7 @@ class MyCommunitiesPage {
       exact: true,
     });
     this.ownedTab = this.page.getByRole("tab", { name: "Owned" });
-    this.activeTab = this.page.getByRole("tab", { name: "Active Memberships" });
+    this.joinedTab = this.page.getByRole("tab", { name: "Joined" });
     this.qaAutomationTesterHeading = this.page.getByRole("heading", {
       name: "QA Automation Tester",
     });
@@ -28,8 +28,8 @@ class MyCommunitiesPage {
     await this.ownedTab.click();
   }
 
-  async clickActiveTab() {
-    await this.activeTab.click();
+  async clickJoinedTab() {
+    await this.joinedTab.click();
   }
 
   async goToCommunity() {
