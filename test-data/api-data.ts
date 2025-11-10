@@ -1,6 +1,3 @@
-import dotenv from "dotenv";
-dotenv.config();
-
 const { LOGIN_API, LOGOUT_API, POST_API, COMMUNITY_ID, AUTHOR_ID } =
   process.env;
 if (!LOGIN_API || !LOGOUT_API || !POST_API || !COMMUNITY_ID || !AUTHOR_ID) {

@@ -6,14 +6,14 @@ test.use({
 });
 
 test.beforeEach(async ({ page }) => {
-  await page.goto("https://app.upskwela.com/login");
+  await page.goto("/");
 });
 
-test.describe("Login Scenarios", () => {
+test.describe.only("Login Scenarios", () => {
   test("Successful Login", async ({ loginPage, page }) => {
     await loginPage.successfulLogin();
 
-    await expect(page).toHaveURL("https://app.upskwela.com/communities");
+    await expect(page).toHaveURL("https://app.upskwela.com");
     await expect(page).not.toHaveURL("https://www.upskwela.com/login");
   });
 

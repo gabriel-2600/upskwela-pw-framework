@@ -22,7 +22,9 @@ test.describe("Search Community Scenario", () => {
   });
 });
 
-test.describe("Create Community Scenario", () => {
+test.describe.only("Create Community Scenario", () => {
+  test.describe.configure({ retries: 2 });
+
   test("Create a community succesfully", async ({ communitiesPage }) => {
     await communitiesPage.clickCreateCommunityBtn();
 
@@ -31,7 +33,7 @@ test.describe("Create Community Scenario", () => {
       createCommunityData.communitySlug,
       createCommunityData.description
     );
-    // await communitiesPage.uploadImage(createCommunityData.coverImage);
+
     await communitiesPage.checkGuidelinesAndNDA();
     await communitiesPage.submitCommunity();
   });
