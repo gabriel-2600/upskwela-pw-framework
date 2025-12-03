@@ -1,4 +1,4 @@
-import { test } from "../../pages/base.ts";
+import { test, expect } from "../../pages/base.ts";
 
 test.beforeEach(async ({ page, myCommunitiesPage }) => {
   await page.goto("https://app.upskwela.com/");
@@ -12,5 +12,9 @@ test.describe("", () => {
   }) => {
     await myCommunitiesPage.clickJoinedTab();
     await myCommunitiesPage.goToCommunity();
+
+    await expect(myCommunitiesPage.headerOne).toContainText(
+      "QA Automation Tester"
+    );
   });
 });

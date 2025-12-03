@@ -22,7 +22,7 @@ test.describe("Search Community Scenario", () => {
   });
 });
 
-test.describe.only("Create Community Scenario", () => {
+test.describe("Create Community Scenario", () => {
   test.describe.configure({ retries: 2 });
 
   test("Create a community succesfully", async ({ communitiesPage }) => {

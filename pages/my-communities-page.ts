@@ -6,6 +6,7 @@ class MyCommunitiesPage {
   readonly ownedTab: Locator;
   readonly joinedTab: Locator;
   readonly qaAutomationTesterHeading: Locator;
+  readonly headerOne: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -18,6 +19,7 @@ class MyCommunitiesPage {
     this.qaAutomationTesterHeading = this.page.getByRole("heading", {
       name: "QA Automation Tester",
     });
+    this.headerOne = this.page.locator("h1");
   }
 
   async goToMyCommunitiesPage() {

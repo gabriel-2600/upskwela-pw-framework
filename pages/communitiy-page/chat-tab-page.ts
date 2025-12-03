@@ -22,19 +22,19 @@ class ChatTab {
     this.searchCommunityChat = this.page.getByRole("textbox", {
       name: "Search community chats...",
     });
-    this.manualTestterChat = this.page.getByRole("link", {
-      name: "Manual Tester (Description",
+    this.manualTestterChat = this.page.getByRole("heading", {
+      name: "Manual Tester",
     });
     this.chatInputField = this.page.getByRole("textbox", {
-      name: "Say something...",
+      name: "Type a message...",
     });
 
     // Chat Div
-    this.chatDiv = this.page.locator(".rounded-2xl.bg-primary").first();
+    this.chatDiv = this.page.locator(".rounded-2xl.bg-blue-600").first();
     this.chatDivMenu = this.page
-      .locator(".flex-row-reverse")
+      .locator(".inline-flex")
       .locator('[aria-haspopup="menu"]')
-      .locator(".lucide-ellipsis-vertical")
+      .locator(".lucide-ellipsis")
       .first();
     this.editMenuItem = this.page.getByRole("menuitem", { name: "Edit" });
     this.deleteMenuItem = this.page.getByRole("menuitem", { name: "Delete" });

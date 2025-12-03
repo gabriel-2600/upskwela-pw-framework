@@ -9,7 +9,7 @@ test.beforeEach(async ({ page }) => {
   await page.goto("/");
 });
 
-test.describe.only("Login Scenarios", () => {
+test.describe("Login Scenarios", () => {
   test("Successful Login", async ({ loginPage, page }) => {
     await loginPage.successfulLogin();
 
