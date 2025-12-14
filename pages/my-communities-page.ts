@@ -6,6 +6,7 @@ class MyCommunitiesPage {
   readonly ownedTab: Locator;
   readonly joinedTab: Locator;
   readonly qaAutomationTesterHeading: Locator;
+  readonly webpagePortfolioHeading: Locator;
   readonly headerOne: Locator;
 
   constructor(page: Page) {
@@ -18,6 +19,9 @@ class MyCommunitiesPage {
     this.joinedTab = this.page.getByRole("tab", { name: "Joined" });
     this.qaAutomationTesterHeading = this.page.getByRole("heading", {
       name: "QA Automation Tester",
+    });
+    this.webpagePortfolioHeading = this.page.getByRole("heading", {
+      name: "Webpage Portfolio",
     });
     this.headerOne = this.page.locator("h1");
   }
@@ -34,8 +38,12 @@ class MyCommunitiesPage {
     await this.joinedTab.click();
   }
 
-  async goToCommunity() {
+  async goToQAAutomationTester() {
     await this.qaAutomationTesterHeading.click();
+  }
+
+  async goToWebpagePortfolio() {
+    await this.webpagePortfolioHeading.click();
   }
 }
 

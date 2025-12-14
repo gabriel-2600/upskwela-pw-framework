@@ -1,12 +1,12 @@
-// import { test, expect } from "../../../pages/base.ts";
+// import { test, expect } from "../../../../pages/base.ts";
 
-// test.beforeEach(async ({ page, myCommunitiesPage, communityPage }) => {
+// test.beforeEach(async ({ page, myCommunitiesPage, communityPageNav }) => {
 //   await page.goto("https://app.upskwela.com/");
 //   await myCommunitiesPage.goToMyCommunitiesPage();
 //   await myCommunitiesPage.clickOwnedTab();
 //   await myCommunitiesPage.clickJoinedTab();
-//   await myCommunitiesPage.goToCommunity();
-//   await communityPage.goToChatTab();
+//   await myCommunitiesPage.goToQAAutomationTester();
+//   await communityPageNav.goToChatTab();
 // });
 
 // test.describe("Chat Tab Scenario", () => {

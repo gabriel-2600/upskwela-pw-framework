@@ -1,6 +1,6 @@
 import { Page, Locator } from "@playwright/test";
 
-class CommunityPage {
+class CommunityPageNav {
   readonly page: Page;
 
   // Side Bar
@@ -27,6 +27,10 @@ class CommunityPage {
   async goToChatTab() {
     await this.chatTab.click();
   }
+
+  async goToDiscussionTab() {
+    await this.discussionTab.click();
+  }
 }
 
-export default CommunityPage;
+export default CommunityPageNav;

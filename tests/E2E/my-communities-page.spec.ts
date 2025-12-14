@@ -11,7 +11,7 @@ test.describe("", () => {
     myCommunitiesPage,
   }) => {
     await myCommunitiesPage.clickJoinedTab();
-    await myCommunitiesPage.goToCommunity();
+    await myCommunitiesPage.goToQAAutomationTester();
 
     await expect(myCommunitiesPage.headerOne).toContainText(
       "QA Automation Tester"

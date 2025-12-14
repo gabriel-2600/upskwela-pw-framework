@@ -2,15 +2,13 @@ import { test as base } from "@playwright/test";
 import LoginPage from "./login-page";
 import CommunitiesPage from "./communities-page";
 import MyCommunitiesPage from "./my-communities-page";
-import CommunityPage from "./communitiy-page/community-page";
-import ChatTab from "./communitiy-page/chat-tab-page";
+import CommunityPageNav from "./community-page/community-page-nav";
 
 type MyFixtures = {
   loginPage: LoginPage;
   communitiesPage: CommunitiesPage;
   myCommunitiesPage: MyCommunitiesPage;
-  communityPage: CommunityPage;
-  chatTab: ChatTab;
+  communityPageNav: CommunityPageNav;
 };
 
 export const test = base.extend<MyFixtures>({
@@ -23,11 +21,8 @@ export const test = base.extend<MyFixtures>({
   myCommunitiesPage: async ({ page }, use) => {
     await use(new MyCommunitiesPage(page));
   },
-  communityPage: async ({ page }, use) => {
-    await use(new CommunityPage(page));
-  },
-  chatTab: async ({ page }, use) => {
-    await use(new ChatTab(page));
+  communityPageNav: async ({ page }, use) => {
+    await use(new CommunityPageNav(page));
   },
 });
 

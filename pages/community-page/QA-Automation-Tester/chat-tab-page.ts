@@ -1,5 +1,4 @@
 import { Page, Locator } from "@playwright/test";
-import CommunityPage from "./community-page";
 
 class ChatTab {
   // Chat Tab
