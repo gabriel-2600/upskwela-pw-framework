@@ -1,5 +1,4 @@
 import { test as setup, request } from "../pages/base.ts";
-import fs from "fs";
 import loginData from "../test-data/login-data.js";
 import apiData from "../test-data/api-data.js";
 

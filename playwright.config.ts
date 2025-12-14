@@ -6,23 +6,24 @@ dotenv.config({ path: path.resolve(__dirname, ".env") });
 
 export default defineConfig({
   testDir: "./tests",
-  /* Run tests in files in parallel */
+
   fullyParallel: true,
-  /* Fail the build on CI if you accidentally left test.only in the source code. */
-  forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
+
   retries: process.env.CI ? 2 : 1,
-  /* Opt out of parallel tests on CI. */
+
   workers: process.env.CI ? 1 : 5,
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
+
   reporter: "html",
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+
   use: {
-    /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: "https://app.upskwela.com/login",
 
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
+    actionTimeout: 20000,
+    video: {
+      mode: "off",
+      size: { width: 1920, height: 1080 },
+    },
   },
   timeout: 60000,
 
@@ -31,7 +32,14 @@ export default defineConfig({
     { name: "setup", testMatch: "auth.setup.ts" },
     {
       name: "chromium",
-      use: { ...devices["Desktop Chrome"], storageState: ".auth/user.json" },
+      use: {
+        ...devices["Desktop Chrome"],
+        storageState: ".auth/user.json",
+        video: {
+          mode: "on",
+          size: { width: 1920, height: 1080 },
+        },
+      },
       dependencies: ["setup"],
     },
 
