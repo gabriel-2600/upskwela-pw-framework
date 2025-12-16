@@ -3,12 +3,14 @@ import LoginPage from "./login-page";
 import CommunitiesPage from "./communities-page";
 import MyCommunitiesPage from "./my-communities-page";
 import CommunityPageNav from "./community-page/community-page-nav";
+import WebpagePortfolio from "./community-page/Webpage-Portfolio/webpage-portolio-page";
 
 type MyFixtures = {
   loginPage: LoginPage;
   communitiesPage: CommunitiesPage;
   myCommunitiesPage: MyCommunitiesPage;
   communityPageNav: CommunityPageNav;
+  webpagePortfolio: WebpagePortfolio;
 };
 
 export const test = base.extend<MyFixtures>({
@@ -23,6 +25,9 @@ export const test = base.extend<MyFixtures>({
   },
   communityPageNav: async ({ page }, use) => {
     await use(new CommunityPageNav(page));
+  },
+  webpagePortfolio: async ({ page }, use) => {
+    await use(new WebpagePortfolio(page));
   },
 });
 
