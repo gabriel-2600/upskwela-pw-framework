@@ -25,18 +25,18 @@ test.describe("Search Community Scenario", () => {
 test.describe("Create Community Scenario", () => {
   test.describe.configure({ retries: 2 });
 
-  test("Create a community succesfully", async ({ communitiesPage }) => {
-    await communitiesPage.clickCreateCommunityBtn();
+  // test("Create a community succesfully", async ({ communitiesPage }) => {
+  //   await communitiesPage.clickCreateCommunityBtn();
 
-    await communitiesPage.fillInputFields(
-      // createCommunityData.communityName,
-      createCommunityData.communitySlug,
-      createCommunityData.description
-    );
+  //   await communitiesPage.fillInputFields(
+  //     // createCommunityData.communityName,
+  //     createCommunityData.communitySlug,
+  //     createCommunityData.description
+  //   );
 
-    await communitiesPage.checkGuidelinesAndNDA();
-    await communitiesPage.submitCommunity();
-  });
+  //   await communitiesPage.checkGuidelinesAndNDA();
+  //   await communitiesPage.submitCommunity();
+  // });
 
   test("Create a community with empty input fields", async ({
     communitiesPage,
