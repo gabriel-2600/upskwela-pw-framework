@@ -56,13 +56,19 @@ export default defineConfig({
     },
 
     /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
+    {
+      name: 'Mobile Chrome',
+      testMatch: "mobile-emul.spec.ts",
+      use: { 
+        ...devices['Pixel 5'], 
+        storageState: ".auth/user.json",
+      },
+      dependencies: ["setup"]
+    },
     // {
     //   name: 'Mobile Safari',
-    //   use: { ...devices['iPhone 12'] },
+    //   use: { ...devices['iPhone 12'], storageState: ".auth/user.json", },
+    //   dependencies: ["setup"]
     // },
 
     /* Test against branded browsers. */

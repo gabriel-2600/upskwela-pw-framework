@@ -1,10 +1,10 @@
 import { test, expect } from "../../pages/base.ts";
 
-test.beforeEach(async ({ page, communitiesPage }) => {
+test.beforeEach(async ({ page }) => {
   await page.goto("https://app.upskwela.com/");
 });
 
-test.describe("Search Community Scenario", () => {
+test.describe("Search Community Scenario  @mobile", () => {
   test("Search an existing community", async ({ communitiesPage }) => {
     await communitiesPage.useSearchCommunity("upskwela community");
 
