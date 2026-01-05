@@ -1,9 +1,7 @@
 import { test, expect } from "../../pages/base.ts";
-import createCommunityData from "../../test-data/create-community-data.js";
 
 test.beforeEach(async ({ page, communitiesPage }) => {
   await page.goto("https://app.upskwela.com/");
-  await communitiesPage.goToCommunities();
 });
 
 test.describe("Search Community Scenario", () => {

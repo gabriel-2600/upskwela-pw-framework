@@ -2,7 +2,6 @@ import { Page, Locator } from "@playwright/test";
 
 class MyCommunitiesPage {
   readonly page: Page;
-  readonly myCommunitiesNavLink: Locator;
   readonly ownedTab: Locator;
   readonly joinedTab: Locator;
   readonly qaAutomationTesterHeading: Locator;
@@ -11,10 +10,6 @@ class MyCommunitiesPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.myCommunitiesNavLink = this.page.getByRole("link", {
-      name: "My Communities",
-      exact: true,
-    });
     this.ownedTab = this.page.getByRole("tab", { name: "Owned" });
     this.joinedTab = this.page.getByRole("tab", { name: "Joined" });
     this.qaAutomationTesterHeading = this.page.getByRole("heading", {
@@ -24,10 +19,6 @@ class MyCommunitiesPage {
       name: "Webpage Portfolio",
     });
     this.headerOne = this.page.locator("h1");
-  }
-
-  async goToMyCommunitiesPage() {
-    await this.myCommunitiesNavLink.click();
   }
 
   async clickOwnedTab() {

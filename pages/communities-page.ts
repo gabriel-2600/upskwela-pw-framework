@@ -3,7 +3,6 @@ import { Page, Locator, expect } from "@playwright/test";
 class CommunitiesPage {
   // Community Page
   readonly page: Page;
-  readonly communityNavLink: Locator;
   readonly createCommunityBtn: Locator;
   readonly upskwelaCommunity: Locator;
   readonly searchCommunity: Locator;
@@ -23,15 +22,11 @@ class CommunitiesPage {
   constructor(page: Page) {
     // Community Page
     this.page = page;
-    this.communityNavLink = this.page.getByRole("link", {
-      name: "Communities",
-      exact: true,
-    });
     this.createCommunityBtn = this.page.getByRole("button", {
       name: "Create Community",
     });
     this.searchCommunity = this.page.getByRole("textbox", {
-      name: " Search communities...",
+      name: " Search your communities...",
     });
     this.upskwelaCommunity = this.page.getByRole("link", {
       name: "Upskwela Community",
@@ -67,10 +62,6 @@ class CommunitiesPage {
     this.createCommunitySubmit = this.page.getByRole("button", {
       name: "Create Community",
     });
-  }
-
-  async goToCommunities() {
-    await this.communityNavLink.click();
   }
 
   async useSearchCommunity(community: string) {
