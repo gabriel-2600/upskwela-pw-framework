@@ -16,6 +16,6 @@ test.describe("Search Community Scenario", () => {
   test("Search a non existing community", async ({ communitiesPage }) => {
     await communitiesPage.useSearchCommunity("n/a");
 
-    await expect(communitiesPage.noCommunitiesFound).toBeVisible();
+    await expect(communitiesPage.noCommunitiesJoined).toBeVisible();
   });
 });

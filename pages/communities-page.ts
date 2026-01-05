@@ -6,7 +6,7 @@ class CommunitiesPage {
   readonly createCommunityBtn: Locator;
   readonly upskwelaCommunity: Locator;
   readonly searchCommunity: Locator;
-  readonly noCommunitiesFound: Locator;
+  readonly noCommunitiesJoined: Locator;
 
   // Create Community Form
   readonly formDiv: Locator;
@@ -31,8 +31,8 @@ class CommunitiesPage {
     this.upskwelaCommunity = this.page.getByRole("link", {
       name: "Upskwela Community",
     });
-    this.noCommunitiesFound = this.page.getByRole("heading", {
-      name: "No communities found",
+    this.noCommunitiesJoined = this.page.getByRole("heading", {
+      name: "No communities joined",
     });
 
     // Create Community Form
