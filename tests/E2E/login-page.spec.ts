@@ -9,7 +9,9 @@ test.beforeEach(async ({ page }) => {
   await page.goto("/");
 });
 
-test.describe("Login Scenarios @smoke @regression", () => {
+test.describe("Login Scenarios", {
+  tag: ["@smoke", "@regression"]
+}, () => {
   test("Successful Login", async ({ loginPage, page }) => {
     await loginPage.successfulLogin();
 

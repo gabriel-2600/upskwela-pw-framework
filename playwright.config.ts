@@ -1,7 +1,9 @@
 import { defineConfig, devices } from "@playwright/test";
 
 import dotenv from "dotenv";
+import { on } from "events";
 import path from "path";
+
 dotenv.config({ path: path.resolve(__dirname, ".env") });
 
 export default defineConfig({
@@ -9,49 +11,45 @@ export default defineConfig({
 
   fullyParallel: true,
 
-  retries: process.env.CI ? 2 : 1,
+  retries: 1,
 
-  workers: process.env.CI ? 1 : 5,
+  workers: 10,
 
-  reporter: "html",
+  reporter: [
+    ["json", {outputFile: "test-results/jsonReport.json"}],
+    ["junit", {outputFile: "test-results/junitReport.xml"}],
+],
 
   use: {
     baseURL: "https://app.upskwela.com/login",
-
     trace: "on-first-retry",
     actionTimeout: 20000,
-    video: {
-      mode: "off",
-      size: { width: 1920, height: 1080 },
-    },
+    storageState: ".auth/user.json",
   },
   timeout: 60000,
 
   /* Configure projects for major browsers */
   projects: [
     { name: "setup", testMatch: "auth.setup.ts" },
+
     {
       name: "chromium",
       use: {
         ...devices["Desktop Chrome"],
-        storageState: ".auth/user.json",
-        video: {
-          mode: "on",
-          size: { width: 1920, height: 1080 },
-        },
+        screenshot: "only-on-failure",
       },
       dependencies: ["setup"],
     },
 
     {
       name: "firefox",
-      use: { ...devices["Desktop Firefox"], storageState: ".auth/user.json" },
+      use: { ...devices["Desktop Firefox"] },
       dependencies: ["setup"],
     },
 
     {
       name: "webkit",
-      use: { ...devices["Desktop Safari"], storageState: ".auth/user.json" },
+      use: { ...devices["Desktop Safari"] },
       dependencies: ["setup"],
     },
 
