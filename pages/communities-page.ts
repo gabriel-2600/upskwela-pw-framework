@@ -82,7 +82,7 @@ class CommunitiesPage {
   async fillInputFields(
     // communityName: string,
     communitySlug: string,
-    description: string
+    description: string,
   ) {
     // await this.communityNameInput.fill(communityName);
     await this.communitySlugInput.fill(communitySlug);

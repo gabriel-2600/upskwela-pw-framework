@@ -9,49 +9,53 @@ test.beforeEach(async ({ page }) => {
   await page.goto("/");
 });
 
-test.describe("Login Scenarios", {
-  tag: ["@smoke", "@regression"]
-}, () => {
-  test("Successful Login", async ({ loginPage, page }) => {
-    await loginPage.successfulLogin();
+test.describe(
+  "Login Scenarios",
+  {
+    tag: ["@smoke", "@regression"],
+  },
+  () => {
+    test("Successful Login", async ({ loginPage, page }) => {
+      await loginPage.successfulLogin();
 
-    await expect(page).toHaveURL("https://app.upskwela.com");
-    await expect(page).not.toHaveURL("https://www.upskwela.com/login");
-  });
+      await expect(page).toHaveURL("https://app.upskwela.com");
+      await expect(page).not.toHaveURL("https://www.upskwela.com/login");
+    });
 
-  test("Incorrect Password", async ({ loginPage }) => {
-    await loginPage.fillCredentials(loginData.email, "n/a");
-    await loginPage.clickLoginButton();
+    test("Incorrect Password", async ({ loginPage }) => {
+      await loginPage.fillCredentials(loginData.email, "n/a");
+      await loginPage.clickLoginButton();
 
-    await expect(loginPage.informationField).toContainText(
-      "Please check your email/username and password and try again."
-    );
-  });
+      await expect(loginPage.informationField).toContainText(
+        "Please check your email/username and password and try again.",
+      );
+    });
 
-  test("Incorrect Email", async ({ loginPage }) => {
-    await loginPage.fillCredentials("n/a", loginData.password);
-    await loginPage.clickLoginButton();
+    test("Incorrect Email", async ({ loginPage }) => {
+      await loginPage.fillCredentials("n/a", loginData.password);
+      await loginPage.clickLoginButton();
 
-    await expect(loginPage.informationField).toContainText(
-      "Please check your email/username and password and try again."
-    );
-  });
+      await expect(loginPage.informationField).toContainText(
+        "Please check your email/username and password and try again.",
+      );
+    });
 
-  test("Empty Password", async ({ loginPage }) => {
-    await loginPage.fillCredentials(loginData.email, "");
-    await loginPage.clickLoginButton();
+    test("Empty Password", async ({ loginPage }) => {
+      await loginPage.fillCredentials(loginData.email, "");
+      await loginPage.clickLoginButton();
 
-    await expect(loginPage.informationField).toContainText(
-      "Please enter your password"
-    );
-  });
+      await expect(loginPage.informationField).toContainText(
+        "Please enter your password",
+      );
+    });
 
-  test("Empty Email/Username", async ({ loginPage }) => {
-    await loginPage.fillCredentials("", loginData.password);
-    await loginPage.clickLoginButton();
+    test("Empty Email/Username", async ({ loginPage }) => {
+      await loginPage.fillCredentials("", loginData.password);
+      await loginPage.clickLoginButton();
 
-    await expect(loginPage.informationField).toContainText(
-      "Please enter your email or username"
-    );
-  });
-});
+      await expect(loginPage.informationField).toContainText(
+        "Please enter your email or username",
+      );
+    });
+  },
+);

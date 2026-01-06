@@ -16,9 +16,10 @@ export default defineConfig({
   workers: 10,
 
   reporter: [
-    ["json", {outputFile: "test-results/jsonReport.json"}],
-    ["junit", {outputFile: "test-results/junitReport.xml"}],
-],
+    ["json", { outputFile: "test-results/jsonReport.json" }],
+    ["junit", { outputFile: "test-results/junitReport.xml" }],
+    ["allure-playwright"],
+  ],
 
   use: {
     baseURL: "https://app.upskwela.com/login",
@@ -55,13 +56,13 @@ export default defineConfig({
 
     /* Test against mobile viewports. */
     {
-      name: 'Mobile Chrome',
+      name: "Mobile Chrome",
       testMatch: "mobile-emul.spec.ts",
-      use: { 
-        ...devices['Pixel 5'], 
+      use: {
+        ...devices["Pixel 5"],
         storageState: ".auth/user.json",
       },
-      dependencies: ["setup"]
+      dependencies: ["setup"],
     },
     // {
     //   name: 'Mobile Safari',

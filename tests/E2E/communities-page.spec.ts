@@ -9,7 +9,7 @@ test.describe("Search Community Scenario", () => {
     await communitiesPage.useSearchCommunity("upskwela community");
 
     await expect(communitiesPage.upskwelaCommunity).toHaveText(
-      /Upskwela Community/
+      /Upskwela Community/,
     );
   });
 
@@ -43,7 +43,7 @@ test.describe("Create Community Scenario", () => {
     await communitiesPage.submitCommunity();
 
     await expect(communitiesPage.formDiv).toHaveText(
-      /Community name is required/
+      /Community name is required/,
     );
   });
 });
