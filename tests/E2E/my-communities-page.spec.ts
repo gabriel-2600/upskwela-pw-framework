@@ -14,4 +14,4 @@ test.describe("My Community Test Scenario", () => {
       "QA Automation Tester",
     );
   });
-});
+})

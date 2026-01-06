@@ -1,6 +1,6 @@
 import { test, expect } from "../../pages/base.ts";
 
-test.beforeEach(async ({ page, communitiesPage }) => {
+test.beforeEach(async ({ page }) => {
   await page.goto("https://app.upskwela.com/");
 });
 
