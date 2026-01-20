@@ -11,7 +11,7 @@ test.describe("My Community Test Scenario", () => {
     await myCommunitiesPage.goToQAAutomationTester();
 
     await expect(myCommunitiesPage.headerOne).toContainText(
-      "QA Automation Tester"
+      "QA Automation Tester",
     );
   });
 });

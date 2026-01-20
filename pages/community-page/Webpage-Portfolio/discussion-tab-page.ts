@@ -9,9 +9,9 @@ class DiscussionTab {
 
   constructor(page: Page) {
     this.page = page;
-    this.post = this.page.getByText('Ariel Sueño');
+    this.post = this.page.getByText("Ariel Sueño");
     this.postCard = this.page.locator(".text-card-foreground.bg-card").nth(0);
-    this.likeBtn = this.postCard.getByRole('button').nth(1);
+    this.likeBtn = this.postCard.getByRole("button").nth(1);
     this.likeCount = this.likeBtn.locator(".font-medium");
   }
 

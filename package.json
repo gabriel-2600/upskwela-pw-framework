@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test:login": "npx playwright test login-page.spec.ts --project='chromium'",
+    "test:mobile-emul": "npx playwright test mobile-emul.spec.ts --project='Mobile Chrome'",
     "lint": "eslint . --ext .js,.ts",
     "lint:fix": "eslint . --ext .js,.ts --fix",
     "format": "prettier --write .",
