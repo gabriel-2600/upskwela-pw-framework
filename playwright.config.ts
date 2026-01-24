@@ -12,7 +12,7 @@ export default defineConfig({
 
   retries: 1,
 
-  workers: 10,
+  workers: 5,
 
   reporter: [
     // ["allure-playwright"],
@@ -23,7 +23,6 @@ export default defineConfig({
     baseURL: "https://app.upskwela.com/login",
     trace: "on-first-retry",
     actionTimeout: 20000,
-    storageState: ".auth/user.json",
   },
 
   /* Configure projects for major browsers */
@@ -35,19 +34,20 @@ export default defineConfig({
       use: {
         ...devices["Desktop Chrome"],
         screenshot: "only-on-failure",
+        storageState: ".auth/user.json",
       },
       dependencies: ["setup"],
     },
 
     {
       name: "firefox",
-      use: { ...devices["Desktop Firefox"] },
+      use: { ...devices["Desktop Firefox"], storageState: ".auth/user.json" },
       dependencies: ["setup"],
     },
 
     {
       name: "webkit",
-      use: { ...devices["Desktop Safari"] },
+      use: { ...devices["Desktop Safari"], storageState: ".auth/user.json" },
       dependencies: ["setup"],
     },
 
@@ -62,9 +62,4 @@ export default defineConfig({
       dependencies: ["setup"],
     },
   ],
-
-  // webServer: {
-  //   command: "npm run start",
-  //   url: "https://app.upskwela.com/login",
-  // },
 });

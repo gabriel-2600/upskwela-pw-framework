@@ -1,0 +1,12 @@
+services:
+  playwright-test:
+    image: playwright-test
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: null
+    env_file:
+      - .env
+    volumes:
+      - ./playwright-report/:/upskwela-pw/playwright-report
+      - ./test-results/:/upskwela-pw/test-results

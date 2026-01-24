@@ -145,3 +145,6 @@ vite.config.ts.timestamp-*
 /playwright/.cache/
 
 .auth/
+
+# macOS
+.DS_Store
