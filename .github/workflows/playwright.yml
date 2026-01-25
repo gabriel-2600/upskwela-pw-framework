@@ -19,6 +19,14 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run Playwright tests
         run: npm run test:mobile-emul
+        env:
+          EMAIL: ${{ secrets.EMAIl }}
+          PASSWORD: ${{secrets.EMAIL}}
+          LOGIN_API: ${{secrets.LOGIN_API}}
+          LOGOUT_API: ${{secrets.LOGOUT_API}}
+          POST_API: ${{secrets.POST_API}}
+          COMMUNITY_ID: ${{secrets.COMMUNITY_ID}}
+          AUTHOR_ID: ${{secrets.AUTHOR_ID}}
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
