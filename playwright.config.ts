@@ -12,7 +12,7 @@ export default defineConfig({
 
   // retries: 1,s
 
-  workers: 5,
+  workers: 1,
 
   reporter: [
     // ["allure-playwright"],

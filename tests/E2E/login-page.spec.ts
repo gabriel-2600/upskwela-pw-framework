@@ -6,7 +6,7 @@ test.use({
 });
 
 test.beforeEach(async ({ page }) => {
-  await page.goto("/");
+  await page.goto("https://app.upskwela.com/login");
 });
 
 test.describe(
