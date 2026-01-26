@@ -18,7 +18,7 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
-        run: npm run test:mobile-emul
+        run: npm run test:login
         env:
           EMAIL: ${{ secrets.EMAIl }}
           PASSWORD: ${{secrets.EMAIL}}
