@@ -15,8 +15,8 @@ export default defineConfig({
   workers: 1,
 
   reporter: [
-    // ["allure-playwright"],
-    ["html"],
+    ["allure-playwright"],
+    // ["html"],
   ],
 
   use: {
@@ -33,7 +33,7 @@ export default defineConfig({
       name: "chromium",
       use: {
         ...devices["Desktop Chrome"],
-        screenshot: "only-on-failure",
+        // screenshot: "only-on-failure",
         storageState: ".auth/user.json",
       },
       dependencies: ["setup"],

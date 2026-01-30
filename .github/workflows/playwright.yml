@@ -17,19 +17,23 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+      - name: Clean Allure Reports
+        run: npm run allure:clean
       - name: Run Playwright tests
-        run: npm run test:login
+        run: npx playwright test
         env:
-          EMAIL: ${{ secrets.EMAIl }}
-          PASSWORD: ${{secrets.EMAIL}}
+          EMAIL: ${{ secrets.EMAIL }}
+          PASSWORD: ${{secrets.PASSWORD}}
           LOGIN_API: ${{secrets.LOGIN_API}}
           LOGOUT_API: ${{secrets.LOGOUT_API}}
           POST_API: ${{secrets.POST_API}}
           COMMUNITY_ID: ${{secrets.COMMUNITY_ID}}
           AUTHOR_ID: ${{secrets.AUTHOR_ID}}
+      - name: Generate Allure Reports
+        run: npm run allure:generate
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
-          name: playwright-report
-          path: playwright-report/
+          name: allure-report
+          path: allure-report/
           retention-days: 30
