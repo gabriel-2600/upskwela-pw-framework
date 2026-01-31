@@ -64,11 +64,11 @@ upskwela-pw-framework/
 
 ## Page Object Model
 
-The project adapts a POM pattern to achieve scalability, maintainablity, and code organization. Pages are located in pages/.
+- The project adapts a POM pattern to achieve scalability, maintainablity, and code organization. Pages are located in pages/.
 
 ## Test Data
 
-The test data are inside test-data/ folder, where each data are securely stored inside an env file.
+- The test data are inside test-data/ folder, where each data are securely stored inside an env file.
 
 ## Project Workflow
 
@@ -124,7 +124,7 @@ npm run allure:clean
 npm run allure:generate
 ```
 
-4. Open Allure HTML report
+3. Open Allure HTML report
 
 ```
 npm run allure:open
@@ -132,7 +132,7 @@ npm run allure:open
 
 ### Docker
 
-Docker is used for containerization, providing a consistent environment allowing the projects to work the same on other machines.
+- Docker is used for containerization, providing a consistent environment allowing the projects to work the same on other machines.
 
 1. Build Docker image
 
