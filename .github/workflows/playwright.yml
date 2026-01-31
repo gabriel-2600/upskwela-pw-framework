@@ -35,7 +35,7 @@ jobs:
       - name: Clean Allure Reports
         run: npm run allure:clean
       - name: Run Playwright tests
-        run: npm run test
+        run: npx playwright test
         env:
           EMAIL: ${{ secrets.EMAIL }}
           PASSWORD: ${{secrets.PASSWORD}}
