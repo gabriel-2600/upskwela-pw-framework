@@ -2,8 +2,21 @@ name: Playwright Tests
 on:
   push:
     branches: [main, master]
-  pull_request:
-    branches: [main, master]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Give the workflow permission to deploy the Pages site
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment,
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   test:
     timeout-minutes: 60
@@ -17,7 +30,7 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-      - name: Install Allure CLI
+      - name: Install Allure
         run: npm install -g allure --save-dev
       - name: Clean Allure Reports
         run: npm run allure:clean
@@ -39,3 +52,23 @@ jobs:
           name: allure-report
           path: allure-report/
           retention-days: 30
+
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload Allure Report files
+          path: "allure-report/"
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
