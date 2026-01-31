@@ -52,28 +52,25 @@ jobs:
           name: allure-report
           path: allure-report/
           retention-days: 30
+      - name: Setup Pages
+        if: always()
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        if: always()
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload Allure Report files
+          path: allure-report/
 
   # Single deploy job since we're just deploying
   deploy:
+    if: always()
     needs: test
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        if: ${{ !cancelled() }}
-        uses: actions/checkout@v4
-      - name: Setup Pages
-        if: ${{ !cancelled() }}
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        if: ${{ !cancelled() }}
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # Upload Allure Report files
-          path: allure-report/
       - name: Deploy to GitHub Pages
-        if: ${{ !cancelled() }}
         id: deployment
         uses: actions/deploy-pages@v4
