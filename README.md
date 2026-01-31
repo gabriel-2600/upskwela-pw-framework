@@ -17,7 +17,8 @@ The generated report using Allure is accessible in:
 
 Brief overview of files:
 
-```upskwela-pw-framework/
+```
+upskwela-pw-framework/
 ├── compose.yaml
 ├── Dockerfile
 ├── eslint.config.js
@@ -41,6 +42,7 @@ Brief overview of files:
 ├── API
 ├── auth.setup.ts
 └── E2E
+```
 
 ## Types of Tests
 
@@ -68,7 +70,82 @@ The project adapts a POM pattern to achieve scalability, maintainablity, and cod
 
 The test data are inside test-data/ folder, where each data are securely stored inside an env file.
 
-# Allure Reports
+## Project Workflow
 
-Allure Report is utilized for HTML test automation report tool.
+### Project Setup
+
+1. Clone repository and navigate to project
+
 ```
+cd upskwela-pw-framework
+```
+
+2. Install dependencies
+
+```
+npm install
+```
+
+or
+
+```
+npm ci
+```
+
+3. Install Playwright browsers
+
+```
+npx playwright install --with-deps
+```
+
+4. Install Allure Report
+
+```
+npm install -D allure-playwright
+```
+
+5. Run all Tests
+
+```
+npmx playwright test
+```
+
+### Generate Allure Report
+
+1. Clean other existing Allure Report to avoid duplication
+
+```
+npm run allure:clean
+```
+
+2. After running test, allure-results will automatically added, then generate an allure report based from the result
+
+```
+npm run allure:generate
+```
+
+4. Open Allure HTML report
+
+```
+npm run allure:open
+```
+
+### Docker
+
+Docker is used for containerization, providing a consistent environment allowing the projects to work the same on other machines.
+
+1. Build Docker image
+
+```
+docker-compose build
+```
+
+2. Run the container
+
+```
+docker-compose up
+```
+
+## Github Actions
+
+- This project has a CI using Github Actions, where every push, the projects tests are executed, Allure reports are generated and deployed using Github Pages.

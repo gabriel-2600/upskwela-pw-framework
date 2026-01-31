@@ -7,4 +7,4 @@ RUN npm ci
 
 COPY . .
 
-CMD ["npx", "playwright", "test", "mobile-emul.spec.ts"]
+CMD ["npx", "playwright", "test"]
