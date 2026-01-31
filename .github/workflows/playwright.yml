@@ -72,7 +72,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload Allure Report files
-          path: "allure-report/"
+          path: allure-report/
       - name: Deploy to GitHub Pages
         if: ${{ !cancelled() }}
         id: deployment
