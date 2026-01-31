@@ -17,7 +17,7 @@ The generated report using Allure is accessible in:
 
 Brief overview of files:
 
-upskwela-pw-framework/
+```upskwela-pw-framework/
 ├── compose.yaml
 ├── Dockerfile
 ├── eslint.config.js
@@ -71,3 +71,4 @@ The test data are inside test-data/ folder, where each data are securely stored 
 # Allure Reports
 
 Allure Report is utilized for HTML test automation report tool.
+```
