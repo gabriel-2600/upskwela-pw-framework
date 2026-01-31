@@ -31,11 +31,11 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Install Allure
-        run: npm install -g allure --save-dev
+        run: npm install -g allure-commandline
       - name: Clean Allure Reports
         run: npm run allure:clean
       - name: Run Playwright tests
-        run: npm run test:login
+        run: npm run test
         env:
           EMAIL: ${{ secrets.EMAIL }}
           PASSWORD: ${{secrets.PASSWORD}}
@@ -64,7 +64,7 @@ jobs:
 
   # Single deploy job since we're just deploying
   deploy:
-    if: always()
+    if: github.ref == 'refs/heads/main'
     needs: test
     environment:
       name: github-pages
