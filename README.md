@@ -107,7 +107,7 @@ npm install -D allure-playwright
 5. Run all Tests
 
 ```
-npmx playwright test
+npx playwright test
 ```
 
 ### Generate Allure Report
