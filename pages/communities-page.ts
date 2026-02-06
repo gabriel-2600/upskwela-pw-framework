@@ -65,17 +65,20 @@ class CommunitiesPage {
   }
 
   async useSearchCommunity(community: string) {
-    await this.page.waitForLoadState("networkidle");
+    // await this.page.waitForLoadState("networkidle");
     await this.searchCommunity.fill(community);
   }
 
   async clickCreateCommunityBtn() {
-    await Promise.all([
-      this.page.waitForURL("**/communities/create"),
-      this.page.getByRole("button", { name: "Create Community" }).click(),
-    ]);
+    // await Promise.all([
+    //   // this.page.waitForURL("**/communities/create"),
 
-    await expect(this.formDiv).toBeVisible({ timeout: 5000 });
+    // ]);
+
+    // await expect(this.formDiv).toBeVisible({ timeout: 5000 });
+    await expect(this.createCommunityBtn).toBeVisible();
+    await this.createCommunitySubmit.waitFor();
+    await this.createCommunityBtn.click();
   }
 
   // Create Community
@@ -100,6 +103,8 @@ class CommunitiesPage {
   }
 
   async submitCommunity() {
+    await expect(this.createCommunitySubmit).toBeVisible();
+    await this.createCommunitySubmit.waitFor();
     await this.createCommunitySubmit.click();
   }
 }

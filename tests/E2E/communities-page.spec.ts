@@ -34,7 +34,7 @@ test.describe("Create Community Scenario", () => {
   //   await communitiesPage.submitCommunity();
   // });
 
-  test("Create a community with empty input fields", async ({
+  test.only("Create a community with empty input fields", async ({
     communitiesPage,
   }) => {
     await communitiesPage.clickCreateCommunityBtn();
@@ -43,6 +43,5 @@ test.describe("Create Community Scenario", () => {
     await expect(communitiesPage.formDiv).toHaveText(
       /Community name is required/,
     );
-    // await expect(communitiesPage.formDiv).toHaveScreenshot();
   });
 });
