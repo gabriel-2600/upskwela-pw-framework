@@ -21,7 +21,7 @@ export default defineConfig({
 
   use: {
     baseURL: "https://app.upskwela.com/login",
-    trace: "on-first-retry",
+    // trace: "on-first-retry",
     actionTimeout: 20000,
   },
 
@@ -33,7 +33,6 @@ export default defineConfig({
       name: "chromium",
       use: {
         ...devices["Desktop Chrome"],
-        // screenshot: "only-on-failure",
         storageState: ".auth/user.json",
       },
       dependencies: ["setup"],

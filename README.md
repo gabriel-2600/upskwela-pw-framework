@@ -36,7 +36,6 @@ upskwela-pw-framework/
 ├── README.md
 ├── test-data
 │   ├── api-data.ts
-│   └── login-data.ts
 ├── test-results
 └── tests
 ├── API
@@ -49,7 +48,6 @@ upskwela-pw-framework/
 1. End-to-End (E2E) Tests
    Located in tests/E2E/, aims to verify the functionality of the web application.
    Tests include:
-   - Login functionality
    - Mobile emulator, for mobile functionality
    - Search communities functionality
    - Create community functionality
@@ -59,7 +57,7 @@ upskwela-pw-framework/
 2. API Tests
    Located in tests/API, aims to verify the API calls of the web application.
    Tests include:
-   - Login and Logout API call
+   - Authenticaion functionality
    - Create and delete a community post API call
 
 ## Page Object Model
