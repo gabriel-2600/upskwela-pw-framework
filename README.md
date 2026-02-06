@@ -62,7 +62,7 @@ upskwela-pw-framework/
 
 ## Page Object Model
 
-- The project adapts a POM pattern to achieve scalability, maintainablity, and code organization. Pages are located in pages/.
+- The project adapts a POM pattern to achieve scalability, maintainablity, and code organization. Pages are located in pages/ folder
 
 ## Test Data
 
