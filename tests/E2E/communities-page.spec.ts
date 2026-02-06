@@ -34,7 +34,7 @@ test.describe("Create Community Scenario", () => {
   //   await communitiesPage.submitCommunity();
   // });
 
-  test.only("Create a community with empty input fields", async ({
+  test("Create a community with empty input fields", async ({
     communitiesPage,
   }) => {
     await communitiesPage.clickCreateCommunityBtn();
